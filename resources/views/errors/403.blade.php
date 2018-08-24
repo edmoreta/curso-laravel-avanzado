@@ -1,1 +1,2 @@
-Error 403
+@extends('layouts.error')
+@section("code",403)

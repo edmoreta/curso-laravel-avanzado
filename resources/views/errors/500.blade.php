@@ -1,1 +1,2 @@
-Error 500, Error del Servidor.
+@extends('layouts.error')
+@section("code",500)

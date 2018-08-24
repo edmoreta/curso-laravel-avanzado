@@ -56,6 +56,7 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
+            //env('APP_ENV') != "local" ? env('DB_HOST', '127.0.0.1') : "127.0.0.1",        para trabajar en local y desarrollo
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),

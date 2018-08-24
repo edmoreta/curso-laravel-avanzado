@@ -48,11 +48,13 @@
                                 </td>
                                 <td>
                                     <a title="Ver" href="{{route('peliculas.show',$pel->idPelicula)}}" class="btn btn-info btn-xs"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
-                                    <a title="Editar" href="{{route('peliculas.edit',$pel->idPelicula)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                    <a title="Eliminar" data-toggle="modal" data-target="#modalDelete" 
-                                    data-name="{{$pel->titulo}}" href="#"
-                                    data-action="{{route('peliculas.destroy',$pel->idPelicula)}}"
-                                    class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    @can ('update',$pel)                            
+                                        <a title="Editar" href="{{route('peliculas.edit',$pel->idPelicula)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <a title="Eliminar" data-toggle="modal" data-target="#modalDelete" 
+                                            data-name="{{$pel->titulo}}" href="#"
+                                            data-action="{{route('peliculas.destroy',$pel->idPelicula)}}"
+                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

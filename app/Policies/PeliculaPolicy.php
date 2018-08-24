@@ -42,7 +42,7 @@ class PeliculaPolicy
      */
     public function update(User $user, Pelicula $pelicula)
     {
-        
+        return $user->id == $pelicula->idUser;
     }
 
     /**

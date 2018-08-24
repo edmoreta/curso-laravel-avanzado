@@ -107,6 +107,7 @@ class PeliculaController extends Controller
     public function update(PeliculaRequest $request, $id)
     {
         try{
+            $this->authorize('update', Pelicula::findOrFail($id));
             $pelicula=Pelicula::updateOrCreate(['idPelicula'=>$id],$request->except('idGenero','idActor'));
             $pelicula->generos()->sync($request->idGenero);
             $pelicula->actores()->sync($request->idActor);

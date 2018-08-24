@@ -25,10 +25,16 @@ Route::group(["middleware" => ['localeSessionRedirect', 'localizationRedirect', 
 
 
     Route::group(["middleware"=>"auth"], function () {
-        Route::resource("peliculas","PeliculaController");
-        Route::resource("generos","GeneroController")->except(['create','edit']);
-        Route::resource("actores","ActorController");
-        Route::post("generos/{id}/restore","GeneroController@restore")->name("generos.restore");
-        Route::post("generos/{id}/trash","GeneroController@trash")->name("generos.trash");
+        Route::resource("peliculas","PeliculaController")->except(['store','update','destroy']);
+        Route::resource("generos","GeneroController")->except(['create','edit','store','update']);
+        Route::resource("actores","ActorController")->except(['store','update','destroy']);        
     });
 });    
+
+Route::group(["middleware"=>"auth"], function () {
+    Route::resource("peliculas","PeliculaController")->only(['store','update','destroy']);
+    Route::resource("generos","GeneroController")->only(['create','edit']);
+    Route::resource("actores","ActorController")->only(['store','update','destroy']);
+    Route::post("generos/{id}/restore","GeneroController@restore")->name("generos.restore");
+    Route::post("generos/{id}/trash","GeneroController@trash")->name("generos.trash");
+});

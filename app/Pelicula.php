@@ -19,7 +19,7 @@ class Pelicula extends Model
     public $timestamps=true;
 
     //public $guarded = []; si no tiene fillable debe tener un guarded
-    public $fillable = ['titulo','duracion','anio','imagen'];
+    public $fillable = ['titulo','duracion','anio','imagen','idUser'];
 
     protected $hidden = ['pivot']; //campos no disponibles para insertar
 
@@ -39,6 +39,11 @@ class Pelicula extends Model
         //return $query->select('anio')->groupBy('anio');
         return $query->select('anio',DB::raw('count(*) as registros'))->groupBy('anio');
         //return $query->select('anio','duracion',DB::raw('count(*) as registros'))->groupBy('anio','duracion');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo('\App\User', 'idUser');
     }
 
     public function generos(){
@@ -98,6 +103,7 @@ class Pelicula extends Model
         });
 
         static::creating(function ($pelicula) {
+            $pelicula->idUser = Auth::id();
             if (Input::hasFile('imagen') && $pelicula->imagen != null) {
                 $image = Input::file('imagen');
                 $pelicula->imagen = $image->store('public/peliculas');

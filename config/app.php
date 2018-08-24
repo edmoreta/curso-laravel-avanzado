@@ -167,6 +167,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Berkayk\OneSignal\OneSignalServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
 
@@ -186,6 +187,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

@@ -18,7 +18,7 @@ class PeliculaController extends Controller
      */
     public function index()
     {
-        $peliculas = Pelicula::withCount('generos','actores')->orderByDesc('anio')->orderBy('titulo')->paginate(10);
+        $peliculas = Pelicula::withCount('generos','actores')->with("usuario:id,name")->orderByDesc('anio')->orderBy('titulo')->paginate(10);
         return view('panel.peliculas.index', compact('peliculas'));
     }
 

@@ -21,6 +21,7 @@
                         <th scope="col">Duración</th>
                         <th scope="col">Géneros</th>
                         <th scope="col">Actores</th>
+                        <th scope="col">Autor</th>
                         <th scope="col">Imagen</th>
                         <th scope="col"></th>
                         </tr>
@@ -37,6 +38,7 @@
                                 <td>
                                     <span class="badge badge-pill badge-{{$pel->actores_count == 0 ? 'danger' : 'info' }}">{{$pel->actores_count}}</span>
                                 </td>
+                                <td>{{$pel->usuario->name}}</td>
                                 <td>
                                     @if($pel->imagen == null)
                                         -

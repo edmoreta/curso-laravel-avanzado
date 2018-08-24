@@ -43,7 +43,7 @@ class PeliculaController extends Controller
     public function store(PeliculaRequest $request)
     {
         try{
-            $pelicula=Pelicula::create($request->except('idGenero','idActor','imagen'));
+            $pelicula=Pelicula::create($request->except('idGenero','idActor'));
 
             //if ($request->hasFile('imagen')) {
             //    $pelicula->imagen = $request->file('imagen')->store('public/peliculas');

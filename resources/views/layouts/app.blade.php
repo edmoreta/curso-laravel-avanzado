@@ -70,10 +70,12 @@
                             <a class="nav-link {{strpos(Request::path(), 'actores') !== false ?'active':''}}"
                              href="{{ url('actores') }}">@lang("messages.actors")</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{strpos(Request::path(), 'usuarios') !== false ?'active':''}}"
-                             href="{{ url('usuarios') }}">@lang("messages.users")</a>
-                        </li>
+                        @role('admin')
+                            <li class="nav-item">
+                                <a class="nav-link {{strpos(Request::path(), 'usuarios') !== false ?'active':''}}"
+                                 href="{{ url('usuarios') }}">@lang("messages.users")</a>
+                            </li>
+                        @endrole
                         @endauth
                     </ul>
 

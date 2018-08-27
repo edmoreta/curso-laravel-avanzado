@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\UserRequest;
+use Illuminate\Database\QueryException;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -15,7 +18,8 @@ class UserController extends Controller
     public function index()
     {
         $usuarios=User::with("roles")->orderBy('name')->paginate(10);
-        return view('panel.usuarios.index', compact('usuarios'));
+        $roles=Role::orderBy('name')->get();
+        return view('panel.usuarios.index', compact('usuarios','roles'));
     }
 
     /**
@@ -34,9 +38,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        try{
+            $user = User::create($request->except('idRol'));
+            $user->roles()->attach($request->idRol);
+            return redirect('usuarios')->with('success','Usuario creado');
+        }catch(Exception | QueryException $e){
+            return back()->withErrors(['exception'=>$e->getMessage()]);
+        }
     }
 
     /**
@@ -47,7 +57,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario=User::with(['roles' => function ($query) {
+            $query->select('display_name');
+        }])->findOrFail($id);
+        return view("panel.usuarios.show",compact('usuario'));
     }
 
     /**

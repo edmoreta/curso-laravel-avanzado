@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Faker;
 
 class User extends Authenticatable
 {
@@ -38,5 +39,17 @@ class User extends Authenticatable
     //{
     //    return $this->belongsToMany('\App\Role', 'role_user');
     //}
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($usuario) {
+            $faker = Faker\Factory::create();
+            $password = $faker->password();
+            info($password);
+            $usuario->password=bcrypt($password);
+        });
+    }
 
 }

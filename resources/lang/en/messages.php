@@ -5,6 +5,7 @@ return [
     'movies' => 'Movies',
     'genders' => 'Genders',
     'actors' => 'Actors',
+    'users' => 'Users',
     'logout' => 'Logout',
     'all' => 'All',
     'actives' => 'Actives',

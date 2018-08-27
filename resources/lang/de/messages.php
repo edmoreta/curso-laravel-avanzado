@@ -5,6 +5,7 @@ return [
     'movies' => 'Filme',
     'genders' => 'Geschlechter',
     'actors' => 'Schauspieler',
+    'users' => 'Benutzer',
     'logout' => 'Ausloggen',
     'all' => 'Alle',
     'actives' => 'Aktive',

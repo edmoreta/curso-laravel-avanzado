@@ -25,7 +25,7 @@ Route::group(["middleware" => ['localeSessionRedirect', 'localizationRedirect', 
 
 
     Route::group(["middleware"=>"auth"], function () {
-        Route::resource("peliculas","PeliculaController")->except(['store','update','destroy']);
+        Route::resource("peliculas","PeliculaController")->except(['store','update','destroy'])->middleware('role:admin');        
         Route::resource("generos","GeneroController")->except(['create','edit','store','update']);
         Route::resource("actores","ActorController")->except(['store','update','destroy']);
         Route::resource("usuarios","UserController")->except(['store','update','destroy']);     

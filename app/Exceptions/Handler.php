@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use BadMethodCallException;
 
 class Handler extends ExceptionHandler
 {
@@ -34,6 +35,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        //dd($exception);
+        if ($exception instanceof BadMethodCallException){
+            abort(500);
+            //return response()->view('errors.500', [], 500);
+        }
         parent::report($exception);
     }
 

@@ -34,4 +34,9 @@ class User extends Authenticatable
         return $this->hasMany('\App\Pelicula', 'idUser'); // modelo y clave foránea
     }
 
+    //public function roles_usuario()
+    //{
+    //    return $this->belongsToMany('\App\Role', 'role_user');
+    //}
+
 }

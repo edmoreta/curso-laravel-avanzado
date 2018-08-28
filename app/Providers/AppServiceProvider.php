@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Auth;
+use Hash;
+use Validator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->validaciones();
     }
 
     /**
@@ -25,4 +29,16 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    private function validaciones()
+    {
+        Validator::extend('current_password', function ($attribute, $value, $parametes) {
+            return Hash::check($value, Auth::user()->password);
+        });
+        Validator::extend('strong_password', function ($attribute, $value, $parametes) {
+            return preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*[!$%&?@#\._-])(?=.*[0-9])[A-Za-z0-9!$%&?@#\._-]{8,25}$/', $value);
+            //  return preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*[!$%&?@#\._-])(?=.*[0-9])[\w!$%&?@#\.-]{8,25}$/', $value);
+        });
+    }
+
 }

@@ -36,7 +36,7 @@ return [
     'dimensions'           => 'El campo :attribute debe tener unas dimensiones entre :min_width x :min_height y
     :max_width x :max_height',
     'email'                => 'El campo :attribute no corresponde con una dirección de e-mail válida.',
-    'uploaded'               => 'No se pudo subir el archivo.',
+    'uploaded'             => 'No se pudo subir el archivo.',
     'filled'               => 'El campo :attribute es obligatorio.',
     'exists'               => 'El campo :attribute no existe.',
     'image'                => 'El campo :attribute debe ser una imagen.',
@@ -74,6 +74,7 @@ return [
         'array'   => 'El campo :attribute debe contener :size elementos.',
     ],
     'string'               => 'El campo :attribute debe contener solo caracteres.',
+    'strong_password'      => 'La contraseña debe tener al menos una letra mayúscula, una minúscula, un número y uno de los siguientes caracteres "!$%&?@#._-".',
     'timezone'             => 'El campo :attribute debe contener una zona válida.',
     'unique'               => 'El elemento :attribute ya está en uso.',
     'url'                  => 'El formato de :attribute no corresponde con el de una URL válida.',

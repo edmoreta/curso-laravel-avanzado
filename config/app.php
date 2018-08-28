@@ -188,6 +188,7 @@ return [
         'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

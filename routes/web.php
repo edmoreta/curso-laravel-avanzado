@@ -28,7 +28,11 @@ Route::group(["middleware" => ['localeSessionRedirect', 'localizationRedirect', 
         Route::resource("peliculas","PeliculaController")->except(['store','update','destroy']);        
         Route::resource("generos","GeneroController")->except(['create','edit','store','update']);
         Route::resource("actores","ActorController")->except(['store','update','destroy']);
-        Route::resource("usuarios","UserController")->except(['store','update','destroy'])->middleware('role:admin');     
+        Route::resource("usuarios","UserController")->except(['store','update','destroy'])->middleware('role:admin');
+        Route::get('settings', 'UserController@settings')->name('settings');
+        
+        Route::post('change_password', 'UserController@change_password')->name('settings.store');
+        Route::get('reporte', 'ReporteController@testPDF');
     });
 });    
 
@@ -38,5 +42,8 @@ Route::group(["middleware"=>"auth"], function () {
     Route::resource("actores","ActorController")->only(['store','update','destroy']);
     Route::resource("usuarios","UserController")->only(['store','update','destroy'])->middleware('role:admin');
     Route::post("generos/{id}/restore","GeneroController@restore")->name("generos.restore");
-    Route::post("generos/{id}/trash","GeneroController@trash")->name("generos.trash");
+    Route::post("generos/{id}/trash","GeneroController@trash")->name("generos.trash");    
 });
+
+//API REST
+//Route::get('movie/{provider}', 'PeliculaController@findMovie')->name('social.auth');

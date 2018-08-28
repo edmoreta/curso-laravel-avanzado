@@ -7,6 +7,8 @@ use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Database\QueryException;
 use App\Role;
+use App\Http\Requests\PasswordRequest;
+use Auth;
 
 class UserController extends Controller
 {
@@ -57,6 +59,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        //$usuario = User::with("roles")->where('id', $id)->orderBy('name')->firstOrFail();
         $usuario=User::with(['roles' => function ($query) {
             $query->select('display_name');
         }])->findOrFail($id);
@@ -71,7 +74,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        //no se pone nada porque el edit se muestra en un modal
     }
 
     /**
@@ -81,9 +84,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            //$user->name=$request->name;
+            //$user->save();
+            $user->roles()->sync($request->idRol);
+            return redirect('usuarios')->with('success', 'Usuario actualizado');
+        } catch (Exception | QueryException $e) {
+            return back()->withErrors(['exception' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -96,4 +107,23 @@ class UserController extends Controller
     {
         //
     }
+
+    public function settings()
+    {
+        $usuario = Auth::user();
+        return view('panel.usuarios.settings', compact('usuario'));
+    }
+
+    public function change_password(PasswordRequest $request)
+    {
+        try {
+            $user = Auth::user();
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return redirect('settings')->with('success', 'Contraseña actualizada');
+        } catch (Exception | QueryException $e) {
+            return back()->withErrors(['exception' => $e->getMessage()]);
+        }
+    }
+
 }

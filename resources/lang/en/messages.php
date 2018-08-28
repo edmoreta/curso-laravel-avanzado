@@ -12,4 +12,5 @@ return [
     'trash' => 'Trash',
     'gender_trash' => 'Gender ":name" sent to trash',
     'languages' => 'Languages',
+    'settings' => 'Settings',
 ];

@@ -71,6 +71,9 @@
                 <div class="title m-b-md">
                     ERROR @yield("code")
                 </div>
+                @isset($description)
+                    <h2>{{$description}}</h2>
+                @endisset                
             </div>
         </div>
     </body>

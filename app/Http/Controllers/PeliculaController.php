@@ -132,4 +132,11 @@ class PeliculaController extends Controller
             return back()->withErrors(['exception'=>$e->getMessage()]);
         }
     }
+
+    public function findMovie($idPelicula)
+    {
+        //$pelicula = Pelicula::findOrFail($idPelicula);
+        $pelicula = Pelicula::where('idPelicula',$idPelicula)->firstOrFail(['idPelicula','titulo','duracion','anio','idUser']);
+        return $pelicula->toJson();
+    }
 }

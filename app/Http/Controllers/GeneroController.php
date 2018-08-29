@@ -172,4 +172,11 @@ class GeneroController extends Controller
         }
     }
 
+    public function findGender($idGenero)
+    {
+        //$pelicula = Pelicula::findOrFail($idPelicula);
+        $genero = Genero::where('idGenero',$idGenero)->firstOrFail(['idGenero','nombre']);
+        return $genero->toJson();
+    }
+
 }

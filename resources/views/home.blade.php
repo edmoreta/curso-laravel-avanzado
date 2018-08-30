@@ -14,7 +14,9 @@
                     <div class="alert alert-success" role="alert">
                         <b>Géneros:</b> {{$generos}}
                     </div>
-
+                    <div class="alert alert-success" role="alert">
+                        <b>Actores:</b> {{$actores}}
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('actores', 'ServiceController@getActores');
-
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
@@ -34,6 +32,8 @@ Route::group(["middleware" => ['localeSessionRedirect', 'localizationRedirect', 
         
         Route::post('change_password', 'UserController@change_password')->name('settings.store');
         Route::get('reportes', 'ReporteController@index');
+
+        Route::get('passport', 'PassportController@index')->middleware('role:admin')->name('passport.index');
     });
 });    
 

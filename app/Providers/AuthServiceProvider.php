@@ -8,6 +8,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use App\Pelicula;
 use App\Policies\PeliculaPolicy;
 
+use Laravel\Passport\Passport;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -30,6 +32,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Passport::routes();
+        
     }
 }

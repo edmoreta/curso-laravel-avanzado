@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Czim\Service\Requests\ServiceSoapRequest;
 use Czim\Service\Services\SoapService;
+use GuzzleHttp\Guzzle\Client;
 
 class ServiceController extends Controller
 {
-    
-    public function getActores(){
+    //consumir servicio SOAP
+    public function getActors(){
         // Set up defaults
         $defaults = new \Czim\Service\Requests\ServiceSoapRequestDefaults();
 
@@ -30,6 +31,13 @@ class ServiceController extends Controller
 
         return $actores;
 
+    }
+
+    //consumir servicio REST
+    public function getMovies(int $idPelicula){
+        $client = new GuzzleHttp\Guzzle\Client();
+        $response = $client->request('GET', 'http://localhost:8000/api/movie/' . $idPelicula);
+        return $response->getBody();
     }
 
 }

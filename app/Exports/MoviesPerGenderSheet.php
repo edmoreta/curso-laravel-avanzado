@@ -20,34 +20,12 @@ class MoviesPerGenderSheet implements FromCollection, WithHeadings, WithTitle, S
     }
 
     public function collection()
-    {
-        
-        // if (count($this->gender->peliculas) > 0) {
-        //     $peliculas = Pelicula::with(['generos' => function ($query) {
-        //         $query->select('nombre')->where('nombre', $this->gender->nombre);
-        //         }])->get(['idPelicula','titulo','duracion','anio']);
-        // } else {
-        //     $peliculas = Pelicula::all();
-        // }       
-        //return $peliculas;     
-        
-        //$generos = Genero::with('peliculas')->where('generos.idGenero',  $this->gender->idGenero)->get();
-
-        //return Genero::find($this->gender->idGenero)->peliculas();
-
+    {                
         return Pelicula::whereHas('generos', function ($query) {
             $query->where('nombre', $this->gender->nombre );
             })->get();
-
-        /*
-        return Genero::with(['peliculas' => function ($query) {
-            $query->select('peliculas.idPelicula','titulo','duracion','anio');
-            }])->where('nombre', $this->gender->nombre)->get();
-        */
         
-        //return $this->gender::with('peliculas')->get();
-
-        //return Genero::with('peliculas')->get();
+        //return $this->genero->peliculas()->orderBy('titulo')->get();
     }
 
     public function map($pelicula): array

@@ -80,6 +80,12 @@
                             <a class="nav-link {{strpos(Request::path(), 'reportes') !== false ?'active':''}}"
                              href="{{ url('reportes') }}">@lang("messages.reports")</a>
                         </li>
+                            @role('admin')
+                            <li class="nav-item">
+                                <a class="nav-link {{strpos(Request::path(), 'passport') !== false ?'active':''}}"
+                                 href="{{ url('passport') }}">Passport</a>
+                            </li>
+                            @endrole                        
                         @endauth
                     </ul>
 

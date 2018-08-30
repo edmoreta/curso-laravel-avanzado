@@ -11,6 +11,8 @@ class MoviesExport implements WithMultipleSheets
     public function sheets(): array
     {
         $genders = Genero::groupBy('nombre')->orderBy('nombre')->has('peliculas','>',0)->get(['nombre']);
+        //$genders = Genero::has('peliculas')->get();
+
         $sheets = [];
         
         foreach ($genders as $g) {   

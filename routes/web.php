@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('actores', 'ServiceController@getActores');
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');

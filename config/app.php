@@ -168,6 +168,7 @@ return [
 
         Berkayk\OneSignal\OneSignalServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Czim\Service\ServiceServiceProvider::class,
 
     ],
 

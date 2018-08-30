@@ -12,5 +12,6 @@ return [
     'trash' => 'Müll',
     'gender_trash' => 'Geschlecht ":name" in den Müll geschickt',
     'languages' => 'Sprachen',
-    'settings' => 'Konfiguration', 
+    'settings' => 'Konfiguration',
+    'reports' => 'Berichte',
 ];

@@ -13,4 +13,5 @@ return [
     'gender_trash' => 'Género ":name" enviado a papelera',
     'languages' => 'Idiomas',
     'settings' => 'Configuración',
+    'reports' => 'Reportes',
 ];

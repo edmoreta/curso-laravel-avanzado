@@ -32,7 +32,7 @@ Route::group(["middleware" => ['localeSessionRedirect', 'localizationRedirect', 
         Route::get('settings', 'UserController@settings')->name('settings');
         
         Route::post('change_password', 'UserController@change_password')->name('settings.store');
-        Route::get('reporte', 'ReporteController@testPDF');
+        Route::get('reportes', 'ReporteController@index');
     });
 });    
 
@@ -42,7 +42,16 @@ Route::group(["middleware"=>"auth"], function () {
     Route::resource("actores","ActorController")->only(['store','update','destroy']);
     Route::resource("usuarios","UserController")->only(['store','update','destroy'])->middleware('role:admin');
     Route::post("generos/{id}/restore","GeneroController@restore")->name("generos.restore");
-    Route::post("generos/{id}/trash","GeneroController@trash")->name("generos.trash");    
+    Route::post("generos/{id}/trash","GeneroController@trash")->name("generos.trash");
+
+    //Reportes
+    Route::group(["prefix"=>"reportes"], function () {       
+        Route::get("usuarios","ReporteController@reporteUsuarios")->name("reportes.usuarios");
+        Route::get("usuarios/excel","ReporteController@reporteUsuariosExcel")->name("reportes.usuarios.excel");   
+        Route::get("generos/excel","ReporteController@reporteGenerosExcel")->name("reportes.generos.excel"); 
+        Route::get("peliculas/excel","ReporteController@reportePeliculasPorAnioExcel")->name("reportes.peliculas.excel");
+        Route::get("movies/excel","ReporteController@reportePeliculasPorGeneroExcel")->name("reportes.movies.excel");           
+    });
 });
 
 //API REST

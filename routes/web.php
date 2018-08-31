@@ -34,6 +34,11 @@ Route::group(["middleware" => ['localeSessionRedirect', 'localizationRedirect', 
         Route::get('reportes', 'ReporteController@index');
 
         Route::get('passport', 'PassportController@index')->middleware('role:admin')->name('passport.index');
+
+        Route::get('actors', function () {
+            return view('panel.actores.indexVue');
+        })->name('actors.index');
+
     });
 });    
 

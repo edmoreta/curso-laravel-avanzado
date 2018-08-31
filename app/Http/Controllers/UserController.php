@@ -9,6 +9,9 @@ use Illuminate\Database\QueryException;
 use App\Role;
 use App\Http\Requests\PasswordRequest;
 use Auth;
+use Faker;
+
+use App\Notifications\NewUserNotification;
 
 class UserController extends Controller
 {
@@ -43,7 +46,17 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         try{
-            $user = User::create($request->except('idRol'));
+            //$user = User::create($request->except('idRol'));
+            
+            $user = new User;
+            $user->fill($request->except('idRol'));
+            $faker = Faker\Factory::create();
+            $password = $faker->password();
+            $user->password = bcrypt($password);
+            $user->save();
+            
+            $user->notify(new NewUserNotification($password));
+
             $user->roles()->attach($request->idRol);
             return redirect('usuarios')->with('success','Usuario creado');
         }catch(Exception | QueryException $e){

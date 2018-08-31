@@ -85,7 +85,12 @@
                                 <a class="nav-link {{strpos(Request::path(), 'passport') !== false ?'active':''}}"
                                  href="{{ url('passport') }}">Passport</a>
                             </li>
-                            @endrole                        
+                            @endrole
+                            
+                        <li class="nav-item">
+                            <a class="nav-link {{strpos(Request::path(), 'actors') !== false ?'active':''}}"
+                                href="{{ url('actors') }}">@lang("messages.actors") Vue</a>
+                        </li>
                         @endauth
                     </ul>
 

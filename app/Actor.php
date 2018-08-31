@@ -10,7 +10,7 @@ class Actor extends Model
     protected $table="actores";
     public $timestamps=true;
 
-    public $guarded = [];
+    public $fillable = ['nombres','apellidos','imagen'];
 
     public function peliculas(){
         return $this->belongsToMany('\App\Pelicula','peliculas_actores','idActor','idPelicula');

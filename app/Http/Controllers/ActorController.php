@@ -18,6 +18,12 @@ class ActorController extends Controller
         $actores = Actor::withCount('peliculas')->orderBy('nombres')->paginate(10);
         return view('panel.actores.index', compact('actores'));
     }
+    
+    public function indexVue()
+    {
+        $actores = Actor::withCount('peliculas')->orderBy('apellidos')->get();
+        return $actores->toJson();
+    }  
 
     /**
      * Show the form for creating a new resource.
@@ -49,6 +55,12 @@ class ActorController extends Controller
         }catch(Exception $e){
             return back()->withErrors(['exception'=>$e->getMessage()])->withInput();
         }
+    }
+
+    public function storeVue(ActorRequest $request)
+    {
+        info($request->all());
+        return Actor::create($request->all());
     }
 
     /**

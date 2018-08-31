@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Czim\Service\Requests\ServiceSoapRequest;
 use Czim\Service\Services\SoapService;
-use GuzzleHttp\Guzzle\Client;
+use GuzzleHttp\Client;
 
 class ServiceController extends Controller
 {
@@ -35,9 +35,12 @@ class ServiceController extends Controller
 
     //consumir servicio REST
     public function getMovies(int $idPelicula){
-        $client = new GuzzleHttp\Guzzle\Client();
-        $response = $client->request('GET', 'http://localhost:8000/api/movie/' . $idPelicula);
-        return $response->getBody();
+        //$client = new GuzzleHttp\Guzzle\Client();
+        //$response = $client->request('GET', 'http://localhost:8000/api/movie/' . $idPelicula);
+        //return $response->getBody();
+        $client = new Client();
+        $response = $client->get('https://jsonplaceholder.typicode.com/todos');
+        return json_decode($response->getBody());
     }
 
 }

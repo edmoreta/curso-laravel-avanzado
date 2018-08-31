@@ -42,6 +42,8 @@ class User extends Authenticatable
     //    return $this->belongsToMany('\App\Role', 'role_user');
     //}
 
+    /* 
+    taller-- ya no utilizo este metodo para poder enviar notificacion con la clave
     public static function boot()
     {
         parent::boot();
@@ -53,5 +55,6 @@ class User extends Authenticatable
             $usuario->password=bcrypt($password);
         });
     }
+    */
 
 }
